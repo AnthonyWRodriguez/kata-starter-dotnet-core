@@ -8,7 +8,14 @@ namespace Kata.Spec
             {
                 return 0;
             }
-            return int.Parse(s);
+
+            var numbersArray = s.Split(',');
+            var sum = 0;
+            foreach (var number in numbersArray)
+            {
+                sum += int.Parse(number);
+            }
+            return sum;
         }
     }
 }
