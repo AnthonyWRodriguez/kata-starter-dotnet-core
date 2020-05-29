@@ -11,8 +11,14 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var numbersArray = s.Split(',').Select(int.Parse);
-            return numbersArray.Sum();
+            var numbersArray = s.Split('\n');
+            var allNumbers = 0;
+            foreach (var element in numbersArray)
+            {
+                allNumbers += element.Split(',').Select(int.Parse).Sum();
+            }
+
+            return (allNumbers);
             
         }
     }
