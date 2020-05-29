@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Kata.Spec
@@ -11,14 +12,19 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var numbersArray = s.Split('\n');
-            var allNumbers = 0;
-            foreach (var element in numbersArray)
+            var delimiter = "";
+            var separator = new[]{",","\n"};
+            var numbers = s;
+            if (s.StartsWith("//"))
             {
-                allNumbers += element.Split(',').Select(int.Parse).Sum();
+                var parts = s.Split("\n");
+                delimiter = parts[0].Replace("//", "");
+                separator = new[] {delimiter};
+                numbers = parts[1];
             }
-
-            return (allNumbers);
+            var numbersArray = numbers.Split(separator, StringSplitOptions.None).Select(int.Parse);
+            
+            return numbersArray.Sum();
             
         }
     }
